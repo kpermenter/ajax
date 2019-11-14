@@ -33,7 +33,7 @@
         //             return `
         //             <div>
         //                 <p>${newsItem.newsTitle}</p>
-        //                 <body.onload= "getLyrics('${newsItem.newsTitle}')" data-trackId='${newsItem.newsData2}' data-artistId='${newsItem.newsImage}'>Get Lyrics</button>
+        //                 <body.onload= "('${newsItem.newsTitle}')" data-trackId='${newsItem.newsData2}' data-artistId='${newsItem.newsImage}'>Get Lyrics</button>
         //             </div>
         //             `
         //         })
@@ -172,6 +172,40 @@
         }
 
         });
+
+   ///////////////     
+              document.addEventListener('DOMContentLoaded', function () {
+
+            $.ajax({
+                url: "https://min-api.cryptocompare.com/data/v2/news/?lang=EN&api_key=985402fdb81c74083af15ad1ab0b905937ad295d50144f8055daa7565b2338f0",
+                type: 'GET',
+                function() {
+                    var data = [{
+                        id: id,
+                        title: title,
+                        url: url
+                    }];
+                
+                };
+                });
+
+                    var string = JSON.stringify(data.value);
+                    var parseData = JSON.parse(string);
+                    
+                    {
+
+                        function render() {
+                            var contentHTML = $("#content").html(parseData.value);
+
+                            return `
+                <div id="content">'${contentHTML.title}'</div>
+                `
+                        };
+                    };
+            });
+
+
+            newsFeed(render);
 
 
 
